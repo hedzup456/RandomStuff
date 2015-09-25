@@ -12,6 +12,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 public class Problem17 {
 	public static String text = "";
 	public static void digits(int x, int y, int z){
+		if(x == y && y == z && z == 0) return; // If the number is 000, return with no changes
 		switch (x){
 		case 1:
 			text += (y==z && z==0)?"onehundred":"onehundredand";
@@ -43,8 +44,11 @@ public class Problem17 {
 		case 0:
 			break;
 		} // Case x	
-		if(y == 1 && z!=0){
+		if(y == 1){
 			switch(z){
+			case 0:
+				text += "ten";
+				break;
 			case 1:
 				text += "eleven";
 				break;
@@ -72,10 +76,12 @@ public class Problem17 {
 			case 9:
 				text += "nineteen";
 				break;
-			} // Switch 
+			} // Switch
+			return; // Don't go into the tens if there's a teen
 		} // If
 		
 		switch(y){
+		
 		case 2:
 			text += "twenty";
 			break;
@@ -83,7 +89,7 @@ public class Problem17 {
 			text += "thirty";
 			break;
 		case 4:
-			text += "fourty";
+			text += "forty";
 			break;
 		case 5:
 			text += "fifty";
@@ -101,12 +107,60 @@ public class Problem17 {
 			text += "ninety";
 			break;
 		} // Switch y
+		
+		switch(z){
+		case 1:
+			text += "one";
+			break;
+		case 2:
+			text += "two";
+			break;
+		case 3:
+			text += "three";
+			break;
+		case 4:
+			text += "four";
+			break;
+		case 5:
+			text += "five";
+			break;
+		case 6:
+			text += "six";
+			break;
+		case 7:
+			text += "seven";
+			break;
+		case 8:
+			text += "eight";
+			break;
+		case 9:
+			text += "nine";
+			break;
+		case 0:
+			break;
+		} // Switch z
+		
+		return;
 		} // digits
 		
 	public static void main(String[] args){
-		// TODO Auto-generated method stub
-		digits(1, 1, 2);
+		// all numbers are abc, where a is the first digit etc
+		// String is initialised with the value for one thousand
+		
+		text = "onethousand";
 		System.out.println(text);
+		for(int a = 0; a < 10; a++){ // Loop for hundreds
+			for(int b = 0; b < 10; b++){ // tens
+				for(int c = 0; c< 10; c++){ // units, starting at one
+					digits(a, b, c);
+					System.out.print("" +a + b + c + ", ");
+					if(c==0) System.out.print("\n" +  text + "\n");
+				} // units
+			} // tens
+		} // hundreds
+		System.out.println(text);
+		System.out.println(text.length());
+		
 		
 	}
 
