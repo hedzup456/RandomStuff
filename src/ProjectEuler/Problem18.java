@@ -46,54 +46,26 @@ public class Problem18 {
 			{91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48},
 			{63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31},
 			{ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23}};
+		
+	public static void squishRows(int row){
 
-	public static int[] findBestOption(int r, int c){ // TODO fix this
-		r++;
-		int[] toReturn = new int[2];
-		try{
-			if(triangle[r][c] > triangle[r][c+1]){
-				toReturn[0] = r;
-				toReturn[1] = c;
-			} else {
-				toReturn[0] = r;
-				toReturn[1] = c+1;
-			}
-		} catch (java.lang.ArrayIndexOutOfBoundsException e){
-			toReturn[0] = r;
-			toReturn[1] = c;
+		int[] bottomRow = triangle[row];
+		int[] topRow = triangle[row-1];
+		
+		for (int topIndex = 0; topIndex < topRow.length; topIndex++){
+			topRow[topIndex] += Math.max(bottomRow[topIndex], bottomRow[topIndex+1]);
 		}
-		return toReturn;
-		
-		/*
-	 	This picks the best option for the row immediately below it.
-		Not the best for the total.
-		EG
-		75
-		95 64
-		17 47 82
-		
-		starting from 75:
-			picks 95, runtot = 75+95 = 170
-			picks 47, runtot = 170 + 47 = 217
-			
-		Correct answer:
-			picks 64, runtot = 75+64 = 139
-			picks 82, runtot = 139+82 = 221
-		*/
-			
-			
-	} // findBestOption
+		triangle[row-1] = topRow;
+		return;
+	} // squishRows
+	
+	
 	
 	public static void main(String[] args) {
-		int row, column, tot = 0, noRows = 20;
-		row = column = 0; // start at the top
-		while (row < noRows){
-			tot += triangle[row][column];
-			int[] fromMethod = findBestOption(row, column);
-			row = fromMethod[0];
-			column = fromMethod[1];
-		} // while
-		System.out.println(tot);
+		for(int iterator = (triangle.length-1); iterator > 0; iterator--){
+			squishRows(iterator);
+		}
+		System.out.println(triangle[0][0]);
 	} // main
 
 }
