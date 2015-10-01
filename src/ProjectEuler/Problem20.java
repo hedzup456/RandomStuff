@@ -14,9 +14,7 @@ public class Problem20 {
 	public static void main(String[] args) {
 		factorial(100);
 		System.out.println(factorial);
-		CommonMethods cm = new CommonMethods();
-		System.out.println(cm.totalDigits(factorial.toString()));
-		
+		System.out.println(CommonMethods.totalDigits(factorial.toString()));	
 	}
 
 }
