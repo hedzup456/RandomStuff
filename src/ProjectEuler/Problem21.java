@@ -1,19 +1,11 @@
 package ProjectEuler;
 
 public class Problem21 {
-	private static int sumOfDivisors(int seed){
-		int total = 0;
-		for(int i = 1; i <= (seed/2); i++){
-			if (seed%i == 0){
-				total += i;
-			}
-		}
-		return total;
-	} // sumOfDivisors
+
 	
 	private static boolean isAmicable(int number){
-		int sOD1 = sumOfDivisors(number);
-		int sOD2 = sumOfDivisors(sOD1);
+		int sOD1 = CommonMethods.sumOfDivisors(number);
+		int sOD2 = CommonMethods.sumOfDivisors(sOD1);
 	
 		if (sOD2 == number && sOD1 != sOD2) return true;
 		return false;
