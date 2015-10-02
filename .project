@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/ProjectEuler/p022_names.txt</name>
+			<type>1</type>
+			<location>C:/Users/Richard/workspace/RandomStuff/src/ProjectEuler/p022_names.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>
