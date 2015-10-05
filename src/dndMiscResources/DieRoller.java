@@ -9,6 +9,23 @@ public class DieRoller {
 		return random.nextInt(sides)+1;
 	} // roolDie
 	
+	public int rollACoreStat(){
+		int[] rolls = {rollDie(6), rollDie(6), rollDie(6), rollDie(6)};
+		int smallest, smallestIndex = 100, total = 0;
+		smallest = Integer.MAX_VALUE;
+		for (int i = 0; i < 4; i++){
+			if(rolls[i] < smallest){
+				smallest = rolls[i];
+				smallestIndex = i;
+			} // if
+		}
+		
+		for(int i = 0; i < 4; i++){
+			if(i != smallestIndex) total += rolls[i];
+		}
+		return total;
+	} // roll a core stat
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter a die to roll in the form (number)D(sides): ");
