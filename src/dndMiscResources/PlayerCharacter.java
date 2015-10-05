@@ -25,6 +25,9 @@ public class PlayerCharacter {
 	public void setPCClass(String pcClass){
 		this.pcClass = pcClass;
 	}
+	public void setRace(String race){
+		this.race = race;
+	}
 	public void setAlignment(String alignment){
 		this.alignment = alignment;
 	}
@@ -52,6 +55,9 @@ public class PlayerCharacter {
 	public void setSize(char size){
 		this.size = size;
 	}
+	public void setPlayerName(String pName){
+		this.playerName = pName;
+	}
 	// end setters
 	
 	// getters
@@ -60,6 +66,9 @@ public class PlayerCharacter {
 	}
 	public String getPCClass(){
 		return this.pcClass;
+	}
+	public String getRace(){
+		return this.race;
 	}
 	public String getAlignment(){
 		return this.alignment;
@@ -88,14 +97,17 @@ public class PlayerCharacter {
 	public char getSize(){
 		return this.size;
 	}
+	public String getPlayerName(){
+		return this.playerName;
+	}
 	// end getters
 	
-	public void rollCoreStats(){
+	public void rollCoreStats(Scanner sc){
 		DieRoller roller = new DieRoller();
-		Scanner sc = new Scanner(System.in);
+
 		int[] rolls = {roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat()};
 		
-		System.out.println("Your rolls are: 1." + rolls[0] + ", 2." + rolls[1] + ", 3." + rolls[2] + ", 4." + rolls[3] + ", 5." + rolls[4] + ", and 6." + rolls[5]);
+		System.out.println(getPlayerName() + " your rolls are: 1." + rolls[0] + ", 2." + rolls[1] + ", 3." + rolls[2] + ", 4." + rolls[3] + ", 5." + rolls[4] + ", and 6." + rolls[5]);
 		int str, dex, intel, cons, wis, cha;
 		System.out.print("Choose Strength: ");
 		str = sc.nextInt();
@@ -109,6 +121,7 @@ public class PlayerCharacter {
 		wis = sc.nextInt();
 		System.out.print("Choose Charisma: ");
 		cha = sc.nextInt();
+
 		
 		setCharisma(rolls[cha-1]);
 		setConstitution(rolls[cons-1]);
@@ -116,7 +129,5 @@ public class PlayerCharacter {
 		setIntelligence(rolls[intel-1]);
 		setStrength(rolls[str-1]);
 		setWisom(rolls[wis-1]);
-		
-		sc.close();
 	}
 }
