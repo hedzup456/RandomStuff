@@ -14,25 +14,26 @@ public class DieRoller {
 		System.out.print("Enter a die to roll in the form (number)D(sides): ");
 		String dieCode = sc.nextLine();
 		while(!dieCode.equals("quit")){ // Loop forever until given quit code
-
-			int dieSides, dieNum;
-			String[] dieCodeSplit = dieCode.toUpperCase().split("D");
-			dieNum = Integer.parseInt(dieCodeSplit[0]);
-			dieSides = Integer.parseInt(dieCodeSplit[1]);
-			
-			if ((dieNum > 1 || dieSides > 1)){	
-				int total = 0;
-				for(; dieNum > 0; dieNum--){
-					int r = rollDie(dieSides);
-					total += r;
-					
-					if (dieNum != 1) System.out.print(r + " + ");
-					else System.out.print(r);
-					
-				} // For
-				System.out.println();
-				System.out.println(dieCode + ": " + total);
-			} // Megaif
+			if (dieCode.length() > 0){
+				int dieSides, dieNum;
+				String[] dieCodeSplit = dieCode.toUpperCase().split("D");
+				dieNum = Integer.parseInt(dieCodeSplit[0]);
+				dieSides = Integer.parseInt(dieCodeSplit[1]);
+				
+				if ((dieNum > 1 || dieSides > 1)){	
+					int total = 0;
+					for(; dieNum > 0; dieNum--){
+						int r = rollDie(dieSides);
+						total += r;
+						
+						if (dieNum != 1) System.out.print(r + " + ");
+						else System.out.print(r);
+						
+					} // For
+					System.out.println();
+					System.out.println(dieCode + ": " + total);
+				} // Megaif
+			} //Gigaif
 			else System.out.println("You failed.");
 			System.out.print("Enter a die to roll in the form (number)D(sides): ");
 			dieCode = sc.nextLine();			
