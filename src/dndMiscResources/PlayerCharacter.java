@@ -109,7 +109,7 @@ public class PlayerCharacter {
 		int[] rolls = {roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat()}; // Array of six rolls for core stats
 		
 		System.out.println(getPlayerName() + " your rolls are: 1." + rolls[0] + ", 2." + rolls[1] + ", 3." + rolls[2] + ", 4." + rolls[3] + ", 5." + rolls[4] + ", and 6." + rolls[5]);
-		int str, dex, intel, cons, wis, cha;
+		int str = 0, dex = 0, intel = 0, cons = 0, wis = 0, cha = 0;
 		// Loop if values are at any point equal - i.e value 1 is chosen for strength and dexterity
 		while(str + dex + intel + cons + wis + cha != 21 || //  1+2+3+4+5+6 = 21, so first check is to see if it totals 21 - if not, likely wrong numbers
 				str == dex || str == intel || str == cons || str == wis || str == cha || // Strength vs everything
