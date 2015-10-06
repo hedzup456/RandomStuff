@@ -3,22 +3,23 @@ package dndMiscResources;
 import java.util.Scanner;
 
 public class PlayerCharacter {
-	String name, race, pcClass, alignment, playerName;
-	int strength, dexterity, intelligence, constitution, wisdom, charisma, speed;
-	char size;
+	// Bulk-declaration of object-wide variables
+	private String name, race, pcClass, alignment, playerName;
+	private int strength, dexterity, intelligence, constitution, wisdom, charisma, speed;
+	private char size;
 	
 	// constructors
-	public PlayerCharacter(){
+	public PlayerCharacter(){ // Defaults
 		name = race = pcClass = alignment = "";
 		strength = dexterity = intelligence = constitution = wisdom = charisma = speed = 0;
 		size = 'M';
 	}
-	public PlayerCharacter(String playerName){
+	public PlayerCharacter(String playerName){ // When playername is passed in with creation of object
 		this.playerName = playerName;
 	}
 	// end constructors
 	
-	// Setters
+	// Setters, all pretty self explanatory
 	public void setName(String name){
 		this.name = name;
 	}
@@ -103,25 +104,32 @@ public class PlayerCharacter {
 	// end getters
 	
 	public void rollCoreStats(Scanner sc){
-		DieRoller roller = new DieRoller();
+		DieRoller roller = new DieRoller(); // Create new DieRoller object
 
-		int[] rolls = {roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat()};
+		int[] rolls = {roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat()}; // Array of six rolls for core stats
 		
 		System.out.println(getPlayerName() + " your rolls are: 1." + rolls[0] + ", 2." + rolls[1] + ", 3." + rolls[2] + ", 4." + rolls[3] + ", 5." + rolls[4] + ", and 6." + rolls[5]);
 		int str, dex, intel, cons, wis, cha;
-		System.out.print("Choose Strength: ");
-		str = sc.nextInt();
-		System.out.print("Choose Dexterity: ");
-		dex = sc.nextInt();
-		System.out.print("Choose Intellegence: ");
-		intel = sc.nextInt();
-		System.out.print("Choose Constitution: ");
-		cons = sc.nextInt();
-		System.out.print("Choose Wisdom: ");
-		wis = sc.nextInt();
-		System.out.print("Choose Charisma: ");
-		cha = sc.nextInt();
-
+		// Loop if values are at any point equal - i.e value 1 is chosen for strength and dexterity
+		while(str + dex + intel + cons + wis + cha != 21 || //  1+2+3+4+5+6 = 21, so first check is to see if it totals 21 - if not, likely wrong numbers
+				str == dex || str == intel || str == cons || str == wis || str == cha || // Strength vs everything
+				dex == intel || dex == cons || dex == wis || dex == cha ||// Dex vs everything else
+				intel == cons || intel == wis || intel ==cha ||
+				cons == wis || cons == cha ||
+				wis == cha){
+			System.out.print("Choose Strength: ");
+			str = sc.nextInt();
+			System.out.print("Choose Dexterity: ");
+			dex = sc.nextInt();
+			System.out.print("Choose Intellegence: ");
+			intel = sc.nextInt();
+			System.out.print("Choose Constitution: ");
+			cons = sc.nextInt();
+			System.out.print("Choose Wisdom: ");
+			wis = sc.nextInt();
+			System.out.print("Choose Charisma: ");
+			cha = sc.nextInt();
+		} // End the stupidly conditioned while
 		
 		setCharisma(rolls[cha-1]);
 		setConstitution(rolls[cons-1]);
@@ -130,4 +138,6 @@ public class PlayerCharacter {
 		setStrength(rolls[str-1]);
 		setWisom(rolls[wis-1]);
 	}
+	
+	
 }

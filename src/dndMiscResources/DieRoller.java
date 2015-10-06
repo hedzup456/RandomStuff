@@ -7,7 +7,7 @@ public class DieRoller {
 	private static int rollDie(int sides){
 		Random random = new Random();
 		return random.nextInt(sides)+1;
-	} // roolDie
+	} // rollDie
 	
 	public int rollACoreStat(){
 		int[] rolls = {rollDie(6), rollDie(6), rollDie(6), rollDie(6)};
