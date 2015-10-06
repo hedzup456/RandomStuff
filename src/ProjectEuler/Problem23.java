@@ -13,7 +13,12 @@ public class Problem23 {
 		return arr;
 	}
 	private static int[] niceArray(boolean[] arr) {
-		
+		int total = 0;
+		for(int i = 0; i < arr.length; i++){
+			if(arr[i]) total++;
+		}
+		int[] toRet = new int[total];
+		for(int )
 		return new int[1];
 	}
 	
