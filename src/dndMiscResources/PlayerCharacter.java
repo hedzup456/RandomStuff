@@ -61,7 +61,7 @@ public class PlayerCharacter {
 	}
 	// end setters
 	
-	// getters
+	// getters, equally self explanatory
 	public String getName(){
 		return this.name;
 	}
@@ -103,7 +103,7 @@ public class PlayerCharacter {
 	}
 	// end getters
 	
-	public void rollCoreStats(Scanner sc){
+	public void rollCoreStats(Scanner sc){	// Method to roll the six core stats needed by all characters. Has scanner passed to it from the main menu.
 		DieRoller roller = new DieRoller(); // Create new DieRoller object
 
 		int[] rolls = {roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat(),roller.rollACoreStat()}; // Array of six rolls for core stats
@@ -131,13 +131,14 @@ public class PlayerCharacter {
 			cha = sc.nextInt();
 		} // End the stupidly conditioned while
 		
+		// Use setters to set rolls
 		setCharisma(rolls[cha-1]);
 		setConstitution(rolls[cons-1]);
 		setDexterity(rolls[dex-1]);
 		setIntelligence(rolls[intel-1]);
 		setStrength(rolls[str-1]);
 		setWisom(rolls[wis-1]);
-	}
+	} // end rollcorestats;		
 	
 	
 }

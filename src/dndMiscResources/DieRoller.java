@@ -1,7 +1,6 @@
 package dndMiscResources;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class DieRoller {
 	private static int rollDie(int sides){
@@ -13,48 +12,35 @@ public class DieRoller {
 		int[] rolls = {rollDie(6), rollDie(6), rollDie(6), rollDie(6)};
 		int smallest, smallestIndex = 100, total = 0;
 		smallest = Integer.MAX_VALUE;
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++){ // determine the smallest value
 			if(rolls[i] < smallest){
 				smallest = rolls[i];
 				smallestIndex = i;
-			} // if
+			} // if	
 		}
 		
-		for(int i = 0; i < 4; i++){
+		for(int i = 0; i < 4; i++){ // find the total of the three highest rolls
 			if(i != smallestIndex) total += rolls[i];
 		}
 		return total;
 	} // roll a core stat
 	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter a die to roll in the form (number)D(sides): ");
-		String dieCode = sc.nextLine();
-		while(!dieCode.equals("quit")){ // Loop forever until given quit code
-			if (dieCode.length() > 0){
-				int dieSides, dieNum;
-				String[] dieCodeSplit = dieCode.toUpperCase().split("D");
-				dieNum = Integer.parseInt(dieCodeSplit[0]);
-				dieSides = Integer.parseInt(dieCodeSplit[1]);
-				
-				if ((dieNum > 1 || dieSides > 1)){	
-					int total = 0;
-					for(; dieNum > 0; dieNum--){
-						int r = rollDie(dieSides);
-						total += r;
-						
-						if (dieNum != 1) System.out.print(r + " + ");
-						else System.out.print(r);
-						
-					} // For
-					System.out.println();
-					System.out.println(dieCode + ": " + total);
-				} // Megaif
-			} //Gigaif
-			else System.out.println("You failed.");
-			System.out.print("Enter a die to roll in the form (number)D(sides): ");
-			dieCode = sc.nextLine();			
-		} // While
-		sc.close();		
-	} // Main
+	public int nDr(int sides, int die){ // Rolls die given sides and number of die to roll
+		if (sides < 2 || die < 1) return 0;
+		int total = 0;
+		for(int i = 0; i < die; i++){
+			total += rollDie(sides);
+		} 
+		return total;
+	} // nDr - sides and die
+	
+	public int nDr(String dieCode){ // Rolls die given a die code
+		dieCode = dieCode.toLowerCase();
+		String[] dieArray= dieCode.split("d");
+		
+		int sides = Integer.parseInt(dieArray[1]);
+		int numberOf = Integer.parseInt(dieArray[0]);
+		
+		return nDr(sides, numberOf);
+	} // nDr - dieCode
 } // DieRoller
