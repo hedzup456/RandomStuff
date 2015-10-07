@@ -10,7 +10,7 @@ public class MainMenu {
 		
 		// Set several variables about the character
 		jiminy.rollCoreStats(sc);
-		jiminy.setPlayerName("Harry the Psychopath");
+		jiminy.setName("Harry the Psychopath");
 		jiminy.setAlignment("CE"); // Alignment, either in form LG/NG/CG/LN/TN/CN/LE/NE/CE or as words (i.e "Chaotic Evil")
 		jiminy.setPCClass("Warrior-noob"); // Class, as a string
 		jiminy.setRace("Human-poop"); // Race, as a string
