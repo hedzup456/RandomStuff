@@ -94,13 +94,17 @@ public class CommonMethods {
 		}
 	}
 	public static int sumOfDivisors(int seed){
-		int total = 0;
-		for(int i = 1; i <= (seed/2+1); i++){
-			if (seed%i == 0){
-				total += i;
-			}
-		}
-		return total;
+		int total = 0, limit = seed;
+		 for(int i=1;i<limit;i++){
+		        if(seed%i==0){
+		            if(i!=1){
+		                if(i != seed/i) total += (i + seed/i);
+		                else total += i;
+		            } else total += i;
+		            limit = seed/i;
+		        }
+		    }       
+		    return total;
 	} // sumOfDivisors
 }
 
