@@ -7,7 +7,8 @@ public class CommonMethods {
 			total += Character.getNumericValue(str.charAt(index));
 		}
 		return total;
-	}
+	} // End totalDigits
+	
 	public static int charVal(char x){
 		x = Character.toLowerCase(x);
 		switch (x){
