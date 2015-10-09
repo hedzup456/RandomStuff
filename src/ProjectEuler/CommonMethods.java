@@ -9,6 +9,29 @@ public class CommonMethods {
 		return total;
 	} // End totalDigits
 	
+	public static int[] genPrimes(int limit){
+		boolean isPrime[] = new boolean[limit+1];
+		
+		for(int i = 2; i <= limit; i++){
+			isPrime[i] = true; // Set default values, ignoring indexes 0 and 1 as both are inapplicable to primes
+		} // for i
+		for (int i = 2; i*i <= limit; i++){ // Only need to check to sqrt(limit)
+			// For each number, mark all multiples of it as not-prime, starting with the lowest number
+			for (int j = 2; i*j <= limit; j++){ // Starting with double the number, going until the limit is exceeded, mark as false
+				isPrime[i*j] = false;
+			} // for j
+		} // for i
+		String x = new String();
+		for (int i = 2; i <= limit; i++){
+			if(isPrime[i]) x += i + ",";
+		} // for i
+		x = x.substring(0, x.length()-1);
+		String[]  xA= x.split(",");
+		int[] tR = new int[xA.length];
+		for(int i = 0; i < xA.length; i++) tR[i] = Integer.parseInt(xA[i]);
+		return tR;
+	} // End genPrimes
+	
 	public static int charVal(char x){
 		x = Character.toLowerCase(x);
 		switch (x){

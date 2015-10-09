@@ -1,21 +1,32 @@
 package ProjectEuler;
 
 public class Problem26 {
-	public static int recurringLength(String str){
+	public static int recurringLength(String str, int d){
 		int length, trueLength= 0;
-		for (length = 0; length < str.length(); length++){
-			for (int index = 0; index < str.length())
-		}
-	}
+		for (length = 1; length < d; length++){
+			boolean temp = false;
+			for (int index = 0; index < str.length(); index++){
+				if (index == length || index + length >= str.length()){
+					break; // Break out of the index testing loop if the index has reached the length to test
+				} // if
+				temp = (str.charAt(index) == str.charAt(index + length));
+			} // for index
+			if(temp) trueLength = length;
+		} // for length
+		return trueLength;
+	} // recurringLenth
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int best = 1;
-		int bestRecur = 1;
-		for(int i = 2; i < 10; i++){
-			String str = Double.toString(1.0/i);
-			
-		}
-	}
-
-}
+		int lim = 30, bestIndx = 0, bestRec = 0;
+		int[] pr = CommonMethods.genPrimes(lim);
+		for(int i = 0; i < pr.length; i++){ // for each prime
+			String oneOvrI = Double.toString(1.0/pr[i]);
+			int rec = recurringLength(oneOvrI, pr[i]);
+			if(rec > bestRec){
+				bestRec = rec;
+				bestIndx = i;
+			} // if
+		} //for i
+		System.out.println(pr[bestIndx]);
+	} // Main method
+} // Class
