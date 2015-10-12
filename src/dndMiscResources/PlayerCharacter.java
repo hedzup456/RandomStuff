@@ -1,9 +1,11 @@
 package dndMiscResources;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class PlayerCharacter {
+public class PlayerCharacter implements Serializable{
 	// Bulk-declaration of object-wide variables
+	private static final long serialVersionUID = 1L;
 	private String name, race, pcClass, alignment, playerName;
 	private int strength, dexterity, intelligence, constitution, wisdom, charisma, speed;
 	private char size;
@@ -102,6 +104,7 @@ public class PlayerCharacter {
 		return this.playerName;
 	}
 	// end getters
+	
 	
 	public void rollCoreStats(Scanner sc){	// Method to roll the six core stats needed by all characters. Has scanner passed to it from the main menu.
 		DieRoller roller = new DieRoller(); // Create new DieRoller object
