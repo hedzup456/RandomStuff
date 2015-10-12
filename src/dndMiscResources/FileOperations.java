@@ -30,6 +30,16 @@ public class FileOperations {
 		return fileToCheck.exists();
 	}
 	
+	public void createFile(String playerName){
+		String path = ".\\src\\dndMiscResources\\Characters\\" + playerName + ".ser";
+		File toCreate = new File(path);
+		try{
+			toCreate.createNewFile();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	public PlayerCharacter readPCFromFile(String playerName){
 		String fileName = ".\\src\\dndMiscResources\\Characters\\" + playerName + ".ser";
 		PlayerCharacter toRet = new PlayerCharacter();
