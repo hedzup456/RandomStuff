@@ -15,13 +15,13 @@ public class MainMenu {
 		jiminy.setAlignment("CE"); // Alignment, either in form LG/NG/CG/LN/TN/CN/LE/NE/CE or as words (i.e "Chaotic Evil")
 		jiminy.setPCClass("Warrior-noob"); // Class, as a string
 		jiminy.setRace("Human-poop"); // Race, as a string
-		
+
 		// Check retrieval works
 		System.out.println(jiminy.getName() + ": Race - " + jiminy.getRace() + " Class - " + jiminy.getPCClass());
 		System.out.println("Str: " + jiminy.getStrength() + " Dexterity: " + jiminy.getDexterity() + " etc");
 		
 		// Save to file
-		FileSerialization fs = new FileSerialization();
+		FileOperations fs = new FileOperations();
 		fs.writePCToFile(jiminy);
 		
 		// Read from file

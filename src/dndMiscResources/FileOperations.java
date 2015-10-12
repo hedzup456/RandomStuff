@@ -1,5 +1,6 @@
 package dndMiscResources;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,10 +8,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class FileSerialization {
+public class FileOperations {
 	
 	public void writePCToFile(PlayerCharacter pc){
-		String fileName = "C:\\Users\\Richard\\" + pc.getPlayerName() + ".ser";
+		String fileName = ".\\src\\dndMiscResources\\Characters\\" + pc.getPlayerName() + ".ser";
 		try{
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -23,8 +24,14 @@ public class FileSerialization {
 		}
 	}
 	
+	public boolean pcExists(String playerName){
+		String path = ".\\src\\dndMiscResources\\Characters\\" + playerName + ".ser";
+		File fileToCheck = new File(path);
+		return fileToCheck.exists();
+	}
+	
 	public PlayerCharacter readPCFromFile(String playerName){
-		String fileName = "C:\\Users\\Richard\\" + playerName + ".ser";
+		String fileName = ".\\src\\dndMiscResources\\Characters\\" + playerName + ".ser";
 		PlayerCharacter toRet = new PlayerCharacter();
 		try{
 			FileInputStream fis = new FileInputStream(fileName);
