@@ -24,22 +24,55 @@ public class MainMenu {
 		return toReturn;
 	}
 	
+	private static PlayerCharacter createPC(Scanner sc, String pName){
+		PlayerCharacter newPC = new PlayerCharacter(pName);
+		System.out.print("Character name: ");
+		newPC.setName(sc.nextLine());
+		System.out.print("Character alignment: ");
+		newPC.setAlignment(sc.nextLine());
+		System.out.print("Character class: ");
+		newPC.setPCClass(sc.nextLine());
+		System.out.print("Character race: ");
+		newPC.setRace(sc.nextLine());
+		
+		switch(newPC.getRace()){
+		case "Gnome":
+			newPC.setSpeed(20);
+			break;
+		case "Dwarf":
+			newPC.setSpeed(20);
+			break;
+		case "Halfling":
+			newPC.setSpeed(20);
+			break;
+		case "Human":
+			newPC.setSpeed(30);
+			break;
+		case "Elf":
+			newPC.setSpeed(30);
+			break;
+		case "Half-elf":
+			newPC.setSpeed(30);
+			break;
+		case "Half-orc":
+			newPC.setSpeed(30);
+			break;
+		}
+		newPC.rollCoreStats(sc);
+		
+		return newPC;
+	} // createPC
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in); // Declare one scanner used by all sections
-		PlayerCharacter jiminy = new PlayerCharacter("Jiminy Cricket"); // Create new PlayerCharacter with PlayerName "Jiminy Cricket"
-		
-		// Set several variables about the character
-		jiminy.rollCoreStats(sc);
-		jiminy.setName("Harry the Psychopath");
-		jiminy.setAlignment("CE"); // Alignment, either in form LG/NG/CG/LN/TN/CN/LE/NE/CE or as words (i.e "Chaotic Evil")
-		jiminy.setPCClass("Warrior-noob"); // Class, as a string
-		jiminy.setRace("Human-poop"); // Race, as a string
+		String playerName = "John";
+		PlayerCharacter jiminy = createPC(sc, playerName);
 		
 		// Save to file
 		savePC(jiminy);
 		
-		PlayerCharacter dave = loadPC("Jiminy Cricket");
+		PlayerCharacter dave = loadPC(playerName);
+		System.out.println();
 		// Check retrieval works
 		System.out.println(dave.getName() + ": Race - " + dave.getRace() + " Class - " + dave.getPCClass());
 		System.out.println("Str: " + dave.getStrength() + " Dexterity: " + dave.getDexterity() + " etc");
