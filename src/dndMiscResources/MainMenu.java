@@ -65,6 +65,14 @@ public class MainMenu {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in); // Declare one scanner used by all sections
+		System.out.println("1. Create new player.\n2. Load existing player.\n3. I don't fucking know yet");
+		int menuChoice = sc.nextInt();
+		sc.nextLine();
+		while(menuChoice != 3){
+			// TODO impliment stuff
+		}
+		
+		System.out.println("Enter your player name: ");
 		String playerName = "John";
 		PlayerCharacter jiminy = createPC(sc, playerName);
 		
@@ -72,10 +80,6 @@ public class MainMenu {
 		savePC(jiminy);
 		
 		PlayerCharacter dave = loadPC(playerName);
-		System.out.println();
-		// Check retrieval works
-		System.out.println(dave.getName() + ": Race - " + dave.getRace() + " Class - " + dave.getPCClass());
-		System.out.println("Str: " + dave.getStrength() + " Dexterity: " + dave.getDexterity() + " etc");
 	}
 
 }
