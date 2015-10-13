@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 public class PlayerCharacter implements Serializable{
 	// Bulk-declaration of object-wide variables
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; // Unsure on what it does, just know it's needed for serialisation!
 	private String name, race, pcClass, alignment, playerName;
 	private int strength, dexterity, intelligence, constitution, wisdom, charisma, speed;
 	private char size;
 	
 	// constructors
 	public PlayerCharacter(){ // Defaults
-		name = race = pcClass = alignment = "";
-		strength = dexterity = intelligence = constitution = wisdom = charisma = speed = 0;
-		size = 'M';
+		this.name = this.race = this.pcClass = this.alignment = "";
+		this.strength = this.dexterity = this.intelligence = this.constitution = this.wisdom = this.charisma = this.speed = 0;
+		this.size = 'M';
 	}
 	public PlayerCharacter(String playerName){ // When playername is passed in with creation of object
 		this.playerName = playerName;
