@@ -18,6 +18,9 @@ public class PlayerCharacter implements Serializable{
 	}
 	public PlayerCharacter(String playerName){ // When playername is passed in with creation of object
 		this.playerName = playerName;
+		this.race = this.pcClass = this.alignment = "";
+		this.strength = this.dexterity = this.intelligence = this.constitution = this.wisdom = this.charisma = this.speed = 0;
+		this.size = 'M';
 	}
 	// end constructors
 	
@@ -32,7 +35,38 @@ public class PlayerCharacter implements Serializable{
 		this.race = race;
 	}
 	public void setAlignment(String alignment){
-		this.alignment = alignment;
+		if (alignment.length() == 2){ // Make sure that the alignment is set as the word value.
+			switch (alignment){
+			case "LG":
+				this.alignment = "Lawful Good";
+				break;
+			case "LN":
+				this.alignment = "Lawful Neutral";
+				break;
+			case "LE":
+				this.alignment = "Lawful Evil";
+				break;
+			case "NG":
+				this.alignment = "Neutral Good";
+				break;
+			case "TN": // Either case of true neutral
+			case "NN":
+				this.alignment = "True Neutral";
+				break;
+			case "NE":
+				this.alignment = "Neutral Evil";
+				break;
+			case "CG":
+				this.alignment = "Chaotic Good";
+				break;
+			case "CN":
+				this.alignment = "Chaotic Neutral";
+				break;
+			case "CE":
+				this.alignment = "Chaotic Evil";
+				break;
+			}
+		} else this.alignment = alignment; // Assuming that the user gave the word-form.
 	}
 	public void setStrength(int strength){
 		this.strength = strength;
