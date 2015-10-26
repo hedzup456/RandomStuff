@@ -82,10 +82,10 @@ public class MainMenu {
 	private static void characterInterface(Scanner sc){
 		PlayerCharacter currentPC = null; // Declare ready for loading and manipulating later
 		
-		System.out.println("1. Create new player.\n2. Load existing player.\n3. Edit the loaded player.\n4. Save the loaded player.\n5. Quit to main menu.");
+		System.out.println("1. Create new player.\n2. Load existing player.\n3. Display the loaded player.\n4. Edit the loaded player.\n5. Save the loaded player.\n6. Quit to main menu.");
 		int menuChoice = sc.nextInt();
 		sc.nextLine(); // Purge keyboard buffer
-		while(menuChoice != 5 && menuChoice < 6 && menuChoice > 0){ // While the user wants to do something. 
+		while(menuChoice != 6){ // While the user wants to do something. 
 			switch (menuChoice){ 	// Best 
 				case 1: // Create new
 					System.out.print("Enter your name: ");
@@ -96,25 +96,44 @@ public class MainMenu {
 					System.out.print("Enter your name, to load your character: ");
 					currentPC = loadPC(sc.nextLine());
 					break;
-				case 3: // Edit loaded
+				case 3: // Display loaded
+					if(!currentPC.getName().equals("")){ // If the name isn't the default
+						System.out.println("Name: " + currentPC.getName());
+						System.out.println("Race and class: " + currentPC.getRace() + ", " + currentPC.getPCClass());
+						System.out.println("Alignment: " + currentPC.getAlignment());
+						System.out.println("Size and speed" + currentPC.getSize() + ", " + currentPC.getSpeed());
+						System.out.println("Core stats (Str, Dex, Cons, Int, Wis, Char): " + currentPC.getStrength() + ", " + currentPC.getDexterity() + 
+								", " + currentPC.getConstitution() + ", " + currentPC.getIntelligence() + ", " + currentPC.getWisom() + ", " + currentPC.getCharisma());
+					}
+					break;
+				case 4: // Edit loaded
 					System.out.println("Editing " + currentPC.getName());
 					// TODO add editing stuff
 					// TODO seriously, add editing stuff
 					break;
-				case 4: // Save
+				case 5: // Save
 					System.out.println("Saving...");
 					savePC(currentPC);
 					break;
+				case 6: // Quit
+					break; // Actual breaking of loop is done in loop condition.
+				default:
+					System.out.println("That's not a valid choice, you muffin.");
+					break;
 			} // switch
-			System.out.println("1. Create new player.\n2. Load existing player.\n3. Edit the loaded player.\n4. Save the loaded player.\n5. Quit to main menu.");
+			System.out.println("1. Create new player.\n2. Load existing player.\n3. Display the loaded player.\n4. Edit the loaded player.\n5. Save the loaded player.\n6. Quit to main menu.");
 			menuChoice = sc.nextInt();
 			sc.nextLine(); // Purge kb buffer
 		}
 	}
 	
 	private static void dieInterface(Scanner sc){
-		System.out.println("Die roller called, just does nothing at all right now");
-		// TODO stuff
+		sc.nextLine(); // To clear buffer
+		System.out.print("Enter what to roll (in the form nDr): ");
+		String dieCode = sc.nextLine().toUpperCase();
+		System.out.println("Rolling " + dieCode);
+		DieRoller dr = new DieRoller();
+		System.out.println(dr.nDr(dieCode));
 	}
 	
 	public static void main(String[] args) {
@@ -131,6 +150,9 @@ public class MainMenu {
 				break;
 			case 2: // if die roller
 				dieInterface(sc);
+				break;
+			default:
+				System.out.println("That's not a valid choice, you muffin.");
 				break;
 			}
 			System.out.println("What would you like to do now? ");
