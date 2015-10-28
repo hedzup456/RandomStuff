@@ -3,14 +3,9 @@
  */
 package cipher;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-
 public class SimpleCaesar {
 	private static String decrypt(String cipherText, int key){
+		if (key < 0) key += 26;
 		StringBuilder plainText = new StringBuilder();
 		cipherText = cipherText.toUpperCase();
 		for(int i = 0; i < cipherText.length(); i++){
@@ -27,6 +22,7 @@ public class SimpleCaesar {
 	}
 	
 	private static String encrypt(String plainText, int key){
+		if (key < 0) key += 26;
 		StringBuilder cipherText = new StringBuilder();
 		plainText = plainText.toUpperCase();
 		for(int i = 0; i < plainText.length(); i++){
@@ -49,15 +45,18 @@ public class SimpleCaesar {
 	
 	public static void main(String[] args) {
 		Utils u = new Utils();
-		String cipherText = "WT MCI KOBH HC YBCK HVS GSQFSH CT HVS FOHZWBSG W AOM PS OPZS HC VSZD PIH HVS DFWQS KWZZ PS VWUV OBR WG BCH BSUCHWOPZS ZWTS VSFS WB PSFZWB VOG ZCGH WHG ZIGHFS OBR W KOBH GOBQHIOFM WB O ACFS QCBUSBWOZ QZWAOHS KWHV GSQIFWHM TCF AM TIHIFS W QOB DFCJWRS RSHOWZG CT DSFGCBBSZ DCZWQM GSQIFWHM OBR FCIHSG OBR QOB TIFBWGV MCI KWHV RCQIASBHOFM SJWRSBQS CT HVS FSOQV CT HVS CFUOBWNOHWCB HVS FSWQVGRCYHCF\r\n";
-		String saveLocation = ".\\src\\cipher\\Caesar\\" + cipherText.substring(0, 4) + ".txt";
+		String cipherText = "";
+		cipherText = "NALKN PKJPD APNKF WJLNK FAYPD WREJC ZNQCC AZPDA YNASS ASANA WXHAP KPWGA PDAOD ELSEP DAOOA JPEWH HUJKN AOEOP WJYAP DAYNA SSANA DWJZA ZPKPD AOKIW HELEN WPAOW PPDAZ AALSW PANNA JZAVR KQOWO LHWJJ AZWJZ SAXAC WJPDA OQNRA UFQOP WBPAN IEZJE CDPPD ANWZW NODKS AZWJW LLNKW YDEJC RAOOA HSDEY DKQNZ WPWXW OAEZA JPEBE AZWOW YKWOP CQWNZ YQPPA NSADA WZAZO KQPDP KWRKE ZZAPA YPEKJ SEPDW HHODE LHECD POKBB SAPDA JYKIL HAPAZ PDAOQ NRAUE JPDAJ ASHKY WPEKJ WBPAN ZWSJS EPDPD AHEOP AJEJC LKOPE JOPWH HAZSA XACWJ WOOAI XHEJC PDAAM QELIA JPBKN LDWOA PSKKB PDAKL ANWPE KJGAA LEJCW SWPYD BKNBQ NPDAN LWPNK HOEJP DAOGU WJZKJ PDASW PAN";
+		//String saveLocation = ".\\src\\cipher\\Caesar\\" + cipherText.substring(0, 4) + ".txt";
 		StringBuilder plainText = new StringBuilder();
 		plainText.append("%n");
-		for(int key = 0; key < 26; key++){
-			plainText.append(String.format("Key: " + key + "%n" + decrypt(cipherText, key) + "%n-_-%n"));
-		}
-		u.saveText(saveLocation, plainText.toString());
-		String harryPT = u.findHarry(u.splitToPlainTexts(u.loadText(saveLocation)));
+		System.out.println(decrypt(cipherText, -4));
+		
+		//for(int key = 0; key < 26; key++){
+		//	plainText.append(String.format("Key: " + key + "%n" + decrypt(cipherText, key) + "%n-_-%n"));
+		//}
+		//u.saveText(saveLocation, plainText.toString());
+		//String harryPT = u.findHarry(u.splitToPlainTexts(u.loadText(saveLocation)));
 		
 	}	
 	
