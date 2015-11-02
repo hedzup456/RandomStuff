@@ -1,7 +1,7 @@
 package ProjectEuler;
 
 public class Problem26 {
-	public static int recurringLength(String str, int d){
+	/*public static int recurringLength(String str, int d){
 		int length, trueLength= 0;
 		for (length = 1; length < d; length++){
 			boolean temp = false;
@@ -29,4 +29,29 @@ public class Problem26 {
 		} //for i
 		System.out.println(pr[bestIndx]);
 	} // Main method
+*/
+	// Not my solution. Taken from
+	// http://www.programminglogic.com/solution-to-problem-26-on-project-euler/
+	// Adapted from C to Java
+	public static void main(String[] args){
+  int i,value,max,counter,max2,z;
+  max=0;
+  max2 = Integer.MIN_VALUE;
+  for (i=7;i<1000;i++){
+    counter=0;
+    value = 10%i;
+    z=1000;
+    while (value != 1 && z>0){
+      value = value *10;
+      value = value % i;
+      counter++;
+      z--;
+    }
+    if (counter>max && z>1){
+      max=counter;
+      max2=i;
+    }
+  }
+  System.out.printf("%d\n",max2);
+}
 } // Class
