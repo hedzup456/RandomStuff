@@ -8,7 +8,6 @@ public class CommonMethods {
 		}
 		return total;
 	} // End totalDigits
-	
 	public static int[] genPrimes(int limit){
 		boolean isPrime[] = new boolean[limit+1];
 		
@@ -31,8 +30,7 @@ public class CommonMethods {
 		for(int i = 0; i < xA.length; i++) tR[i] = Integer.parseInt(xA[i]);
 		return tR;
 	} // End genPrimes
-	
-	public static int charVal(char x){
+	public static int getCharVal(char x){
 		x = Character.toLowerCase(x);
 		switch (x){
 		case 'a':
@@ -130,5 +128,13 @@ public class CommonMethods {
 		    }       
 		    return total;
 	} // sumOfDivisors
+	public static boolean checkIfPrime(long numCheck) {
+		if(numCheck <= 1) return false;
+		long sqrtNumcheck = (long)Math.pow(numCheck, 0.5) + 1;
+		for(int i = 2; i < sqrtNumcheck; i++) {
+			if (numCheck%i == 0) return false; // If at any point it's divisible it can't be prime
+		}
+		return true; // Return true if false has not been returned yet
+	}
 }
 
