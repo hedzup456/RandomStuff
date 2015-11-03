@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem2 {
+public class Problem02 {
 	public static int fib(int n){
 		return (n<=1)?n:(fib(n-1)+fib(n-2));
 	} // End fib

@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem9 {
+public class Problem09 {
 	public static void pythagTrip(){
 		int m, n, a = 0, b = 0, c = 0, sum = 0;
 		int product = 0;

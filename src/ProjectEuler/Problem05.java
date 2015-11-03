@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem5 {
+public class Problem05 {
 	public static void main(String[] args){
 		int n = 20;
 		while(true){

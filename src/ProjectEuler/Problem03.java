@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem3 {
+public class Problem03 {
 	public static int primeFactor(long number){
 		int i; // So declared out of loop so returnd out of loop
 		for (i=2; i<=number; i++){

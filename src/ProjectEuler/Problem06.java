@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem6 {
+public class Problem06 {
 	public static int sumSquare(){ // Sum of squares (1^2+2^2...)
 		int runTot=0;
 		for(int i=1; i<=100; i++){

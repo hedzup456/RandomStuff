@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class Problem4 {
+public class Problem04 {
 	public static boolean numTest(int number){
 		String reverse = "";
 		String string = Integer.toString(number);
