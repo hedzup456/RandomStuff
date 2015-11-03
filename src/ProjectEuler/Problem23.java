@@ -1,7 +1,5 @@
 package ProjectEuler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
 /* Find all numbers that are abundant below the limit
