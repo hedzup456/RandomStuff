@@ -37,14 +37,8 @@ public class SimpleCaesar {
 		}
 		return cipherText.toString();
 	}
-	private static int getKey(String pt){
-		String keyLine = pt.split("\\r?\\n")[1];
-		char c = keyLine.charAt(keyLine.length()-1);
-		return Character.getNumericValue(c);		
-	}
 	
 	public static void main(String[] args) {
-		Utils u = new Utils();
 		String cipherText = "";
 		cipherText = "NALKN PKJPD APNKF WJLNK FAYPD WREJC ZNQCC AZPDA YNASS ASANA WXHAP KPWGA PDAOD ELSEP DAOOA JPEWH HUJKN AOEOP WJYAP DAYNA SSANA DWJZA ZPKPD AOKIW HELEN WPAOW PPDAZ AALSW PANNA JZAVR KQOWO LHWJJ AZWJZ SAXAC WJPDA OQNRA UFQOP WBPAN IEZJE CDPPD ANWZW NODKS AZWJW LLNKW YDEJC RAOOA HSDEY DKQNZ WPWXW OAEZA JPEBE AZWOW YKWOP CQWNZ YQPPA NSADA WZAZO KQPDP KWRKE ZZAPA YPEKJ SEPDW HHODE LHECD POKBB SAPDA JYKIL HAPAZ PDAOQ NRAUE JPDAJ ASHKY WPEKJ WBPAN ZWSJS EPDPD AHEOP AJEJC LKOPE JOPWH HAZSA XACWJ WOOAI XHEJC PDAAM QELIA JPBKN LDWOA PSKKB PDAKL ANWPE KJGAA LEJCW SWPYD BKNBQ NPDAN LWPNK HOEJP DAOGU WJZKJ PDASW PAN";
 		//String saveLocation = ".\\src\\cipher\\Caesar\\" + cipherText.substring(0, 4) + ".txt";
@@ -57,7 +51,7 @@ public class SimpleCaesar {
 		//}
 		//u.saveText(saveLocation, plainText.toString());
 		//String harryPT = u.findHarry(u.splitToPlainTexts(u.loadText(saveLocation)));
-		
+		encrypt("123", 1);
 	}	
 	
 

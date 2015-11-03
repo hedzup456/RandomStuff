@@ -31,7 +31,7 @@ public class Problem22 {
 				int nameScore = 0;
 				for(int j = 0; j < names[i].length(); j++){
 					char x = names[i].charAt(j);
-					nameScore += CommonMethods.charVal(x);
+					nameScore += CommonMethods.getCharVal(x);
 				} // for j
 				nameScore = nameScore * (i+1);
 				total += nameScore;
