@@ -122,7 +122,7 @@ public class PlayerCharacter implements Serializable{
 	public int getConstitution(){
 		return this.constitution;
 	}
-	public int getWisom(){
+	public int getWisdom(){
 		return this.wisdom;
 	}
 	public int getCharisma(){

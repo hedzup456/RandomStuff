@@ -101,9 +101,12 @@ public class MainMenu {
 						System.out.println("Name: " + currentPC.getName());
 						System.out.println("Race and class: " + currentPC.getRace() + ", " + currentPC.getPCClass());
 						System.out.println("Alignment: " + currentPC.getAlignment());
-						System.out.println("Size and speed" + currentPC.getSize() + ", " + currentPC.getSpeed());
+						System.out.println("Size and speed: " + currentPC.getSize() + ", " + currentPC.getSpeed());
 						System.out.println("Core stats (Str, Dex, Cons, Int, Wis, Char): " + currentPC.getStrength() + ", " + currentPC.getDexterity() + 
-								", " + currentPC.getConstitution() + ", " + currentPC.getIntelligence() + ", " + currentPC.getWisom() + ", " + currentPC.getCharisma());
+								", " + currentPC.getConstitution() + ", " + currentPC.getIntelligence() + ", " + currentPC.getWisdom() + ", " + currentPC.getCharisma());
+						System.out.println("PName: " + currentPC.getPlayerName());
+						DisplayChar ui = new DisplayChar(currentPC);
+						ui.setVisible(true);
 					}
 					break;
 				case 4: // Edit loaded
