@@ -30,7 +30,7 @@ public class DieRoller {
 		int total = 0;
 		for(int i = 0; i < die; i++){
 			total += rollDie(sides);
-		} 
+		}
 		return total;
 	} // nDr - sides and die
 	

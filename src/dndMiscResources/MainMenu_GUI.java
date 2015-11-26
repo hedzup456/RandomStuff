@@ -1,37 +1,33 @@
 /**
- * 
+ * 			JUST POINTING OUT
+ * 			PROBABLY ABOUT 90% OF THIS CODE
+ * 			IS MADE BY WINDOWBUILDER
  */
 package dndMiscResources;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.UIManager;
 import java.awt.Cursor;
-import javax.swing.SwingConstants;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.JMenuBar;
-import javax.swing.ImageIcon;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  * @author Richard
  *
  */
 public class MainMenu_GUI extends JFrame {
-
+	static final long serialVersionUID = 0L;
 	private JPanel contentPane;
 
 	/**
@@ -77,6 +73,11 @@ public class MainMenu_GUI extends JFrame {
 		contentPane.add(lblHelloWhatWould);
 		
 		JButton btnManageCharacters = new JButton("<html>\r\nManage <br>\r\nCharacters\r\n</html>");
+		btnManageCharacters.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(contentPane, "Yeah this doesn't actually do anything yet. Sorry-not-sorry.", "THIS IS A TITLE, ISN'T IT EXCITING", JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 		btnManageCharacters.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnManageCharacters.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
 		btnManageCharacters.setBounds(27, 71, 263, 136);
@@ -84,16 +85,18 @@ public class MainMenu_GUI extends JFrame {
 		btnManageCharacters.setForeground(Color.BLACK);
 		contentPane.add(btnManageCharacters);
 		
-		JButton btnNewButton = new JButton("Roll Die");
-		btnNewButton.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
-		btnNewButton.setBounds(317, 71, 263, 136);
-		btnNewButton.setBackground(new Color(220, 220, 220));
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton btnRollDie = new JButton("Roll Die");
+		btnRollDie.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
+		btnRollDie.setBounds(317, 71, 263, 136);
+		btnRollDie.setBackground(new Color(220, 220, 220));
+		btnRollDie.setForeground(Color.BLACK);
+		btnRollDie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DieRoller_GUI dr = new DieRoller_GUI(); // Great new window with the dieroller
+				dr.setVisible(true); // Set that window to be visible
 			}
 		});
-		contentPane.add(btnNewButton);
+		contentPane.add(btnRollDie);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setLabelFor(lblNewLabel);
