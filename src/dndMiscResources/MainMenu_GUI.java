@@ -54,7 +54,7 @@ public class MainMenu_GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainMenu_GUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Richard\\git\\RandomStuff\\Resources\\Icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu_GUI.class.getResource("/dndMiscResources/Icon.png")));
 		setResizable(false);
 		setTitle("Richard's Dungeons and Dragons thing");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,7 +97,7 @@ public class MainMenu_GUI extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setLabelFor(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Richard\\git\\RandomStuff\\Resources\\Dungeons_and_Dragons.png"));
+		lblNewLabel.setIcon(new ImageIcon(MainMenu_GUI.class.getResource("/dndMiscResources/Dungeons_and_Dragons.png")));
 		lblNewLabel.setBounds(27, 220, 568, 151);
 		contentPane.add(lblNewLabel);
 	}
