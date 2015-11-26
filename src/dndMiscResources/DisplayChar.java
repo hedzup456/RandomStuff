@@ -32,7 +32,7 @@ public class DisplayChar extends JFrame {
 		this.pc = pc;
 		setTitle(pc.getPlayerName());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 1024);
+		setBounds(100, 100, 1024, 831);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -40,7 +40,7 @@ public class DisplayChar extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblName = new JLabel("Name: \t" + pc.getPlayerName());
-		lblName.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblName.setMaximumSize(new Dimension(1920, 10));
 		lblName.setForeground(Color.GREEN);
 		lblName.setBackground(new Color(255, 255, 255));
@@ -48,7 +48,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblName);
 		
 		JLabel lblCharacterName = new JLabel("Character name: \t" + pc.getName());
-		lblCharacterName.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblCharacterName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblCharacterName.setMaximumSize(new Dimension(1920, 10));
 		lblCharacterName.setForeground(Color.GREEN);
 		lblCharacterName.setBackground(new Color(255, 255, 255));
@@ -56,7 +56,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblCharacterName);
 		
 		JLabel lblRace = new JLabel("Race: \t" + pc.getRace());
-		lblRace.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblRace.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblRace.setMinimumSize(new Dimension(102, 0));
 		lblRace.setMaximumSize(new Dimension(1920, 10));
 		lblRace.setForeground(Color.GREEN);
@@ -65,7 +65,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblRace);
 		
 		JLabel lblStrength = new JLabel("Strength: \t" + pc.getStrength());
-		lblStrength.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblStrength.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblStrength.setMaximumSize(new Dimension(1920, 10));
 		lblStrength.setForeground(Color.GREEN);
 		lblStrength.setBackground(new Color(255, 255, 255));
@@ -73,7 +73,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblStrength);
 		
 		JLabel lblDexterity = new JLabel("Dexterity: \t" + pc.getDexterity());
-		lblDexterity.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblDexterity.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblDexterity.setMaximumSize(new Dimension(1920, 10));
 		lblDexterity.setForeground(Color.GREEN);
 		lblDexterity.setBackground(new Color(255, 255, 255));
@@ -81,7 +81,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblDexterity);
 		
 		JLabel lblIntelligence = new JLabel("Intelligence: \t" + pc.getIntelligence());
-		lblIntelligence.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblIntelligence.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblIntelligence.setMaximumSize(new Dimension(1920, 10));
 		lblIntelligence.setForeground(Color.GREEN);
 		lblIntelligence.setBackground(new Color(255, 255, 255));
@@ -89,7 +89,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblIntelligence);
 		
 		JLabel lblWisdom = new JLabel("Wisdom: \t" + pc.getWisdom());
-		lblWisdom.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblWisdom.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblWisdom.setMaximumSize(new Dimension(1920, 10));
 		lblWisdom.setForeground(Color.GREEN);
 		lblWisdom.setBackground(new Color(255, 255, 255));
@@ -97,7 +97,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblWisdom);
 		
 		JLabel lblCharisma = new JLabel("Charisma: \t" + pc.getCharisma());
-		lblCharisma.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblCharisma.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblCharisma.setMaximumSize(new Dimension(1920, 10));
 		lblCharisma.setForeground(Color.GREEN);
 		lblCharisma.setBackground(new Color(255, 255, 255));
@@ -105,7 +105,7 @@ public class DisplayChar extends JFrame {
 		contentPane.add(lblCharisma);
 		
 		JLabel lblConstitution = new JLabel("Constitution: \t" + pc.getConstitution());
-		lblConstitution.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		lblConstitution.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 21));
 		lblConstitution.setMinimumSize(new Dimension(83, 0));
 		lblConstitution.setMaximumSize(new Dimension(1920, 10));
 		lblConstitution.setForeground(Color.GREEN);

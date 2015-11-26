@@ -3,7 +3,7 @@ package dndMiscResources;
 import java.util.Random;
 
 public class DieRoller {
-	private static int rollDie(int sides){
+	private int rollDie(int sides){
 		Random random = new Random();
 		return random.nextInt(sides)+1;
 	} // rollDie
@@ -37,9 +37,17 @@ public class DieRoller {
 	public int nDr(String dieCode){ // Rolls die given a die code
 		dieCode = dieCode.toLowerCase();
 		String[] dieArray= dieCode.split("d");
-		
-		int sides = Integer.parseInt(dieArray[1]);
-		int numberOf = Integer.parseInt(dieArray[0]);
+		int sides, numberOf;
+		try{
+			sides = Integer.parseInt(dieArray[1]);
+			numberOf = Integer.parseInt(dieArray[0]);
+		} catch (NumberFormatException e){
+			System.out.println("Invalid die code");
+			return -1;
+		} catch (IndexOutOfBoundsException e){
+			sides = Integer.parseInt(dieArray[0]);
+			numberOf = 1;
+		}
 		
 		return nDr(sides, numberOf);
 	} // nDr - dieCode
