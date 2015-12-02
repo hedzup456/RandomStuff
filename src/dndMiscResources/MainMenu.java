@@ -14,7 +14,7 @@ public class MainMenu {
 		}
 	}
 	
-	private static PlayerCharacter loadPC(String pN) {
+	public static PlayerCharacter loadPC(String pN) {
 		// Act as in between for FO class and main class
 		FileOperations fo = new FileOperations();
 		PlayerCharacter toReturn;
