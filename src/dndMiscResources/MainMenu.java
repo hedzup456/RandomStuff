@@ -105,8 +105,6 @@ public class MainMenu {
 						System.out.println("Core stats (Str, Dex, Cons, Int, Wis, Char): " + currentPC.getStrength() + ", " + currentPC.getDexterity() + 
 								", " + currentPC.getConstitution() + ", " + currentPC.getIntelligence() + ", " + currentPC.getWisdom() + ", " + currentPC.getCharisma());
 						System.out.println("PName: " + currentPC.getPlayerName());
-						DisplayChar ui = new DisplayChar(currentPC);
-						ui.setVisible(true);
 					}
 					break;
 				case 4: // Edit loaded

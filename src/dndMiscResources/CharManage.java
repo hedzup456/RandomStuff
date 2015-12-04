@@ -4,21 +4,20 @@
 package dndMiscResources;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Richard
@@ -82,8 +81,23 @@ public class CharManage extends JFrame {
 				{PlayerCharInMemory.getStrength(), PlayerCharInMemory.getDexterity(), PlayerCharInMemory.getConstitution(), PlayerCharInMemory.getIntelligence(), PlayerCharInMemory.getWisdom(), PlayerCharInMemory.getCharisma()}
 		};
 		
+		JLabel lblCharacterRace = new JLabel("Race: " + PlayerCharInMemory.getRace());
+		panel.add(lblCharacterRace);
+		
+		JLabel lblLevel = new JLabel("Level: " + 1);
+		panel.add(lblLevel);
+		
+
+		
+		JLabel lblCharacterAge = new JLabel("Age:");
+		panel.add(lblCharacterAge);
+		
+		JLabel lblSpeed = new JLabel("Speed: " + 30);
+		panel.add(lblSpeed);
+		
 		table = new JTable();
 		panel.add(table);
+		
 		table.setModel(new DefaultTableModel(
 			data,
 			columns
@@ -103,25 +117,34 @@ public class CharManage extends JFrame {
 		table.getColumnModel().getColumn(5).setResizable(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblCharacterRace = new JLabel("Race: " + PlayerCharInMemory.getRace());
-		panel.add(lblCharacterRace);
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("View Character\r\n", null, panel_1, null);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JLabel lblLevel = new JLabel("Level: " + 1);
-		panel.add(lblLevel);
+		JLabel lblPlayerNameNew = new JLabel("Player Name: " + PlayerCharInMemory.getPlayerName());
+		panel_1.add(lblPlayerNameNew);
 		
-		JLabel lblSpeed = new JLabel("Speed: " + 30);
-		panel.add(lblSpeed);
+		JLabel lblCharacterNameNew = new JLabel("Character Name: " + PlayerCharInMemory.getName());
+		panel_1.add(lblCharacterNameNew);
+		
+		JLabel lblCharacterClassNew = new JLabel("Class: " + PlayerCharInMemory.getPCClass());
+		panel_1.add(lblCharacterClassNew);
+		
+		JLabel lblLevelNew = new JLabel("Level: " + 1);
+		panel_1.add(lblLevelNew);
+		
+		JLabel lblCharacterRaceNew = new JLabel("Race: " + PlayerCharInMemory.getRace());
+		panel_1.add(lblCharacterRaceNew);
 		
 
 		
-		JLabel lblCharacterAge = new JLabel("Age:");
-		panel.add(lblCharacterAge);
+		JLabel lblCharacterAgeNew = new JLabel("Age:");
+		panel_1.add(lblCharacterAgeNew);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
-		
-		JLabel lblYaaaaaaaaaaaay = new JLabel("yaaaaaaaaaaaay");
-		panel_1.add(lblYaaaaaaaaaaaay);
+		JLabel lblSpeedNew = new JLabel("Speed: " + 30);
+		panel_1.add(lblSpeedNew);
+
+		tabbedPane.addTab("Create a character", null, panel_1, null);
 	}
 
 }

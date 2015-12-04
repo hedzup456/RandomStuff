@@ -76,6 +76,10 @@ public class MainMenu_GUI extends JFrame {
 		btnManageCharacters.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(contentPane, "Yeah this doesn't actually do anything yet. Sorry-not-sorry.", "THIS IS A TITLE, ISN'T IT EXCITING", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "I may have lied. Oops.", "THIS IS A TITLE PART TWO: THE TITLING", JOptionPane.PLAIN_MESSAGE);
+				CharManage cm = new CharManage(); // Create cm object
+				cm.setVisible(true);	// Set it visible
+				cm.setAlwaysOnTop(true);	// Fuck it, it's a top now
 			}
 		});
 		btnManageCharacters.setHorizontalTextPosition(SwingConstants.CENTER);
