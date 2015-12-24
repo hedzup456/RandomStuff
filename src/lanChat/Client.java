@@ -1,5 +1,10 @@
 package lanChat;
 
+/*
+ * 	THIS IS STOLEN CODE, ALL DONE TO LEARN
+ */
+
+
 import java.net.*;
 import java.io.*;
 import java.util.*;

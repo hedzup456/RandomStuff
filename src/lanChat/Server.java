@@ -1,5 +1,9 @@
 package lanChat;
 
+/*
+ * 	THIS IS STOLEN CODE, ALL DONE TO LEARN
+ */
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
