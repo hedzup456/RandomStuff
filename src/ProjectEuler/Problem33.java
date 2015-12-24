@@ -59,7 +59,7 @@ public class Problem33 {
 		for(int p: nums) num *= p;
 		for(int p: dens) den *= p;
 		
-		System.out.println("" + num + "/" + den);
+		System.out.println("" + num + "/" + den);	// Unsimplified
 	}
 
 }

@@ -1,6 +1,40 @@
 package ProjectEuler;
 
 public class CommonMethods {
+	public static long factorial(int num){
+		if (num < 0)return -1;
+		switch (num){	// Save computation time
+		case 0:
+			return 1L;
+		case 1:
+			return 1L;
+		case 2:
+			return 2L;
+		case 3:
+			return 6L;
+		case 4:
+			return 24L;
+		case 5:
+			return 120L;
+		case 6:
+			return 720L;
+		case 7:
+			return 5040L;
+		case 8:
+			return 40320L;
+		case 9:
+			return 362880L;
+		case 10:
+			return 3628800L;
+		default:
+			long tr = 1;
+			for (; num > 0; num--){
+				tr *= num;
+			}
+			return tr;
+		}
+				
+	}
 	public static long totalDigits(String str){
 		long total = 0;
 		for(int index = 0; index < str.length(); index++){
