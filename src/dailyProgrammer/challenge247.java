@@ -52,7 +52,7 @@ public class challenge247 {
 			}
 		}
 		for(int i = 0; i < givers.length; i++){
-			System.out.println(givers[i] + "->" + recievers[i]);
+			System.out.println(givers[i] + " -> " + recievers[i]);
 		}
 	}
 
