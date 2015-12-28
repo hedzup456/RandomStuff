@@ -132,7 +132,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		if(o == whoIsIn) {
 			client.sendMessage(new Message(Message.WHOISIN, ""));				
 			return;
-
+		}
 
 		// ok it is coming from the JTextField
 		if(connected) {

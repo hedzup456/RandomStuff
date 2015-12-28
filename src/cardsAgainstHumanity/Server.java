@@ -3,7 +3,7 @@
  */
 package cardsAgainstHumanity;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /**
  * @author Richard
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class Server {
 	int numPlayers;
 	int port;
-	ArrayList<ClientThread> al;
+//	ArrayList<ClientThread> al;
 	
 	public static void main(String[] args) {
 		switch (args.length){
-		case 0
+//		case 0
 		}
 			
 
