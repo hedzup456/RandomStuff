@@ -14,8 +14,9 @@ public class Problem37 {
 	 */
 	public static void main(String[] args) {
 		int i = 10, tot = 0, count = 0;
-		while (count <= 11){
+		while (count < 11){
 			if(checkForTruncatablePrime(i)){
+				System.out.println(i);
 				tot += i;
 				count++;
 			}
@@ -38,10 +39,10 @@ public class Problem37 {
 		return isPossible;
 	}
 	private static boolean tryLeft(int i){
-		int length = Integer.toString(i).length()-1;
-		int div = (int)Math.pow(10, length);
 		boolean isPossible = true;
 		while (i > 10 && isPossible){
+			int length = Integer.toString(i).length()-1;
+			int div = (int)Math.pow(10, length);
 			i %= div;
 			div /= 10;
 			isPossible = CommonMethods.checkIfPrime(i);
