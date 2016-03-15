@@ -22,7 +22,7 @@ public class SimpleCaesar {
 	}
 	
 	private static String encrypt(String plainText, int key){
-		if (key < 0) key += 26;
+		while (key < 0) key += 26;
 		StringBuilder cipherText = new StringBuilder();
 		plainText = plainText.toUpperCase();
 		for(int i = 0; i < plainText.length(); i++){
@@ -30,7 +30,8 @@ public class SimpleCaesar {
 			char r = p;
 			if(Character.isAlphabetic(p)){
 				r = (char)(p + key);
-				if(r < (int)'A') r -= 26;
+				while(r < 'A') r += 26;
+				while(r > 'Z') r -= 26;
 				
 			}
 			cipherText.append(r);
@@ -40,19 +41,7 @@ public class SimpleCaesar {
 	
 	public static void main(String[] args) {
 		String cipherText = "";
-		cipherText = "NALKN PKJPD APNKF WJLNK FAYPD WREJC ZNQCC AZPDA YNASS ASANA WXHAP KPWGA PDAOD ELSEP DAOOA JPEWH HUJKN AOEOP WJYAP DAYNA SSANA DWJZA ZPKPD AOKIW HELEN WPAOW PPDAZ AALSW PANNA JZAVR KQOWO LHWJJ AZWJZ SAXAC WJPDA OQNRA UFQOP WBPAN IEZJE CDPPD ANWZW NODKS AZWJW LLNKW YDEJC RAOOA HSDEY DKQNZ WPWXW OAEZA JPEBE AZWOW YKWOP CQWNZ YQPPA NSADA WZAZO KQPDP KWRKE ZZAPA YPEKJ SEPDW HHODE LHECD POKBB SAPDA JYKIL HAPAZ PDAOQ NRAUE JPDAJ ASHKY WPEKJ WBPAN ZWSJS EPDPD AHEOP AJEJC LKOPE JOPWH HAZSA XACWJ WOOAI XHEJC PDAAM QELIA JPBKN LDWOA PSKKB PDAKL ANWPE KJGAA LEJCW SWPYD BKNBQ NPDAN LWPNK HOEJP DAOGU WJZKJ PDASW PAN";
-		//String saveLocation = ".\\src\\cipher\\Caesar\\" + cipherText.substring(0, 4) + ".txt";
-		StringBuilder plainText = new StringBuilder();
-		plainText.append("%n");
-		System.out.println(decrypt(cipherText, -4));
-		
-		//for(int key = 0; key < 26; key++){
-		//	plainText.append(String.format("Key: " + key + "%n" + decrypt(cipherText, key) + "%n-_-%n"));
-		//}
-		//u.saveText(saveLocation, plainText.toString());
-		//String harryPT = u.findHarry(u.splitToPlainTexts(u.loadText(saveLocation)));
-		encrypt("123", 1);
-	}	
-	
-
+		cipherText = "How hard was this cipher to crack? – Akela";
+		System.out.println(encrypt(cipherText, 15));
+		}
 }

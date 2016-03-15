@@ -31,6 +31,7 @@ public class PlayerHand {
 		return this.username;
 	}
 	public void setCard (int index,String card){
-		this.hand[index] = card;
+		if (this.hand[index].equals("")) this.hand[index] = card;
+		else throw 
 	}
 }
