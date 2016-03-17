@@ -1,11 +1,14 @@
 package dailyProgrammer;
 
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -27,6 +30,7 @@ public class challenge258 {
 	private static DataInputStream inStrm;
 	private static DataOutputStream outStrm;
 	private static Socket socket;
+	private static boolean connected;
 	
 	private static final String eln =  "\r\n";	// IRC Endline. eln is easier to remember than \r\n. I guarantee I'd forget \r\n.
 	
@@ -65,8 +69,10 @@ public class challenge258 {
 		try{
 			outStrm.writeBytes("NICK " + nick + eln);	// NICK connection
 			outStrm.writeBytes("USER " + user + eln);	// USER connection message
-			outStrm.writeBytes("JOIN " + channel + eln);	// Join channel	
+			outStrm.writeBytes("JOIN " + channel + eln);	// Join channel
+			connected = true;
 		} catch (IOException e){
+			connected = false;
 			e.printStackTrace();
 		}
 	}
@@ -83,7 +89,7 @@ public class challenge258 {
 		// Each thing is in it's own try/catch because I want to be sure each thing gets closed properly.
 		// Nothing in catches - I'm not too fussed if an exception doesn't get handled at this point.
 		try{	// Actually try to disconnect from any server - neatly.
-			outStrm.writeBytes("QUIT" + eln);
+			outStrm.writeBytes("QUIT It's time for bed" + eln);
 		} catch (NullPointerException e){
 		}catch (IOException e){}
 		try{	// Stab it through the ears
@@ -95,6 +101,28 @@ public class challenge258 {
 		try{	// Murder it in cold blood
 			socket.close();
 		} catch (Exception e) {}
+		connected = false;
+	}
+	/**
+	 * Short method to neaten the idea of getting a String array from a String, split around the parts of the message.
+	 * <p>
+	 * In order, the array returns <ul> 
+	 * <li>	Prefix, without the colon
+	 * <li> Type, I.E Ping, PRIVMSG etc
+	 * <li> Destination (Channel)
+	 * <li> The message itself, without the leading colon. 
+	 * 
+	 * @param raw raw message
+	 * @return the message in parts. {nick, host, type, channel, text}
+	 */
+	private static String[] parseMessage(String raw){
+		Pattern pat = Pattern.compile("^(?:[:](\\S+) )?(\\S+)(?: (?!:)(.+?))?(?: [:](.+))?$"); //	Regex provided by https://mybuddymichael.com/writings/a-regular-expression-for-irc-messages.html
+		Matcher mat = pat.matcher(raw);
+		String[] messageInParts = new String[4];
+		if(mat.find()){
+			for (int i = 0; i < 4; i++)	messageInParts[i] = mat.group(i+1);
+		}
+		return messageInParts;
 	}
 	/**
 	 * Method to parse a command received by a user with !hedzbot
@@ -140,17 +168,24 @@ public class challenge258 {
 			
 			joinServerAndChannel();
 
-			String incoming = "";
-			while ((incoming = inStrm.readLine()) != null) {	// While we get things
-				//	From server
-				if(incoming.contains("!hedzbot")){
-					parseCommand(incoming);
-				} else if(incoming.contains("PING :")){	// Deal with PING keepalives
-					incoming = incoming.substring(6);	// Ignore the "PING :" bit
-					outStrm.writeBytes("PONG :" + incoming + eln);
-					System.out.println("Just got pinged. Dealt with it, though");
-				} else System.out.println(neaten(incoming.substring(1)));
+			String incoming = inStrm.readLine();	//	Get the first message
+			String[] parsed;
+			
+			while (connected) {	// While we get things from the server
+				parsed = parseMessage(incoming);
+				if(parsed.length > 2){
+					if(parsed[1].equals("PING")){
+						outStrm.writeBytes("PONG" + parsed[3]);
+						System.out.println("Pinged at ");
+					} else if (parsed[1].equals("PRIVMSG")){
+						System.out.println(parsed[0] + " to " + parsed[2] + ": " + parsed[3]);
+					} else {
+						System.out.println(parsed[0] + " " +  parsed[1] + " " + parsed[2] + " " + parsed[3]);
+					}
+				}
+				connected = (((incoming = inStrm.readLine()) != null ) && connected);
 			}
+			
 			quit();	// Disconnect from the server.
 			sc.close();
 		} catch (IOException e){
