@@ -1,11 +1,15 @@
 package dailyProgrammer;
 
 
+import java.awt.SecondaryLoop;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +27,8 @@ public class challenge258 {
 	//	Server Info
 	private static String server = "chat.freenode.net"; 
 	private static int serverPort = 6667;
-	private static String channel = "#reddit-dailyprogrammer";
+	//private static String channel = "#reddit-dailyprogrammer";
+	private static String channel = "#rdp";
 	
 	//	Input/Output
 	//	Declared now, filled later to allow multi-method access
@@ -33,6 +38,7 @@ public class challenge258 {
 	private static boolean connected;
 	
 	private static final String eln =  "\r\n";	// IRC Endline. eln is easier to remember than \r\n. I guarantee I'd forget \r\n.
+	//	That said I've forgotten eln multiple times.
 	
 	/**
 	 * Simple method to connect from to the server at the given address and port.
@@ -52,8 +58,9 @@ public class challenge258 {
 			
 			System.out.println("Sockets created.");
 			return true;
-		} catch (SocketException e){
-			e.printStackTrace();
+		} catch (UnknownHostException e){
+			System.out.println("It looks like thats not a valid hostname or IP address.");
+			System.out.println("Are you sure you're connected to the internet?");
 		} catch (IOException e){
 			e.printStackTrace();
 		}
@@ -102,6 +109,22 @@ public class challenge258 {
 			socket.close();
 		} catch (Exception e) {}
 		connected = false;
+	}
+	/**
+	 * Simple method to simplify sending messages.
+	 *  
+	 * @param channel	The channel to send to.
+	 * @param message	The message to send.
+	 */
+	private static void sendMessage(String channel, String message){
+		try{
+			outStrm.writeBytes("PRIVMSG " + channel + " :" + message + eln);
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	private static void sendMessage(String message){
+		sendMessage(channel, message);
 	}
 	/**
 	 * Short method to neaten the idea of getting a String array from a String, split around the parts of the message.
@@ -160,14 +183,27 @@ public class challenge258 {
 		}
 	}
 	
+	/**
+	 * Returns just the username from the full user
+	 * 
+	 * @param fullUser
+	 * @return The nickname of the client sending the message.
+	 */
+	private static String removeHostname(String fullUser){
+		String[] temp = fullUser.split("!");
+		return temp[0];
+	}
 	@SuppressWarnings("deprecation")	//	DataInputStream readLine is depreciated. I might even fix it at some point.
 	public static void main(String[] args) {
 		try{
-			connect(server, serverPort);	
+			connected = connect(server, serverPort);	
 			Scanner sc = new Scanner(System.in);
 			
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:MM:ss");
+			
 			joinServerAndChannel();
-
+			sendMessage("Hi everyone!");
+			
 			String incoming = inStrm.readLine();	//	Get the first message
 			String[] parsed;
 			
@@ -175,12 +211,19 @@ public class challenge258 {
 				parsed = parseMessage(incoming);
 				if(parsed.length > 2){
 					if(parsed[1].equals("PING")){
+						//	Message is a ping, and must be replied to continue the connection to the server.
 						outStrm.writeBytes("PONG" + parsed[3]);
-						System.out.println("Pinged at ");
-					} else if (parsed[1].equals("PRIVMSG")){
-						System.out.println(parsed[0] + " to " + parsed[2] + ": " + parsed[3]);
+						System.out.println("Pinged at " + sdf.format(new Date()));
+						
+					} else if (parsed[1].equals("JOIN")){
+						//	Message is a Join notification
+						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " joined " + parsed[2]);
+						sendMessage("Greetings, user");
+						
+					}else if (parsed[1].equals("PRIVMSG")){
+						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " to " + parsed[2] + ": " + parsed[3]);
 					} else {
-						System.out.println(parsed[0] + " " +  parsed[1] + " " + parsed[2] + " " + parsed[3]);
+						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " " +  parsed[1] + " " + parsed[2] + " " + parsed[3]);
 					}
 				}
 				connected = (((incoming = inStrm.readLine()) != null ) && connected);
