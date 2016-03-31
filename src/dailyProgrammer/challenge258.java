@@ -1,12 +1,10 @@
 package dailyProgrammer;
 
 
-import java.awt.SecondaryLoop;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -147,41 +145,6 @@ public class challenge258 {
 		}
 		return messageInParts;
 	}
-	/**
-	 * Method to parse a command received by a user with !hedzbot
-	 * <p>
-	 * Method only really looks in the message for certain keywords.
-	 *   
-	 * @param rawCommand
-	 * @return void
-	 */
-	private static void parseCommand(String rawCommand){
-		if (rawCommand.contains("disconnect") || rawCommand.contains("quit") || rawCommand.contains("kill") || rawCommand.contains("seppuku")){
-			quit();
-		}
-	}
-	/**
-	 * Method to strip out unnecessary text from messages - ultimately there should just be the username and their message.
-	 * 
-	 * @param rough A line of raw text from the server.
-	 * @return a neatened version of the entered text.
-	 */
-	private static String neaten(String rough){
-		try{
-			if (rough.contains("@")){	// String is likely a user if it contains '@'.
-				String[] parts = rough.split(" ");
-				if(parts.length > 3){
-					parts[0] = parts[0].substring(0, parts[0].indexOf('!'));	// Drop the hostname and other boring stuff like that
-					parts[3] = parts[3].substring(1);	//	Drop the colon before the actual message
-					String neat = parts[0] + ": ";
-					for(int i = 3; i < parts.length; i++)	neat = neat + parts[i] + " ";	// Add the rest of the message. Because the whole point of it is to output the message.
-					return neat;
-				} else return rough;
-			} else return rough;	// Might be important
-		} catch (StringIndexOutOfBoundsException e){
-			return rough;	// Something fucked up. I can't be bothered to work out what.
-		}
-	}
 	
 	/**
 	 * Returns just the username from the full user
@@ -209,20 +172,40 @@ public class challenge258 {
 			
 			while (connected) {	// While we get things from the server
 				parsed = parseMessage(incoming);
-				if(parsed.length > 2){
+				/*	PARSED	|	MEANING
+				 * 		0	|	USER
+				 * 		1	|	TYPE
+				 * 		2	|	CHANNEL
+				 * 		3	|	MESSAGE
+				 */
+				if (parsed[0] != null) parsed[0] = removeHostname(parsed[0]);	// Use the neat names
+				
+				if (parsed.length > 2){
 					if(parsed[1].equals("PING")){
 						//	Message is a ping, and must be replied to continue the connection to the server.
-						outStrm.writeBytes("PONG" + parsed[3]);
+						sendMessage("PONG" + parsed[3]);
+						//		Pinged at $TIME
 						System.out.println("Pinged at " + sdf.format(new Date()));
 						
 					} else if (parsed[1].equals("JOIN")){
 						//	Message is a Join notification
+						// 	$TIME - $USER joined $CHANNEL
 						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " joined " + parsed[2]);
-						sendMessage("Greetings, user");
+						sendMessage("Hi there, " + parsed[0]);
 						
-					}else if (parsed[1].equals("PRIVMSG")){
-						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " to " + parsed[2] + ": " + parsed[3]);
+					} else if (parsed[1].equals("PRIVMSG")){
+						if (parsed[2].equals(nick)){
+							//	Private message from a user
+							//	$TIME - New private message from $USER: $MESSAGE 
+							System.out.println(sdf.format(new Date()) + " - New private message from " + parsed[0] + ": " + parsed[3]);
+						} else {
+							// "Public" message, channelwide
+							//	$TIME - $USER to $CHANNEL: $MESSAGE
+							System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " to " + parsed[2] + ": " + parsed[3]);
+						}
 					} else {
+						//	Dump all info, as current situation isn't handled
+						//	$TIME - $USER $TYPE $CHANNEL $MESSAGE
 						System.out.println(sdf.format(new Date()) + " - " + parsed[0] + " " +  parsed[1] + " " + parsed[2] + " " + parsed[3]);
 					}
 				}
